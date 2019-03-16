@@ -15,16 +15,16 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "NODE_ENV=production webpack",
+    "build": "cross-env NODE_ENV=production webpack",
     "build-dev": "webpack",
     "webpack-build-done": "grunt cachebuster:public",
     "dev": "webpack --watch",
     "lint": "eslint public/src",
     "serve": "npm run build && npm run build-dev && grunt copy-npmLibs && grunt public-cachebuster && grunt serve",
     "phpdocs": "rimraf docs/php && vendor\\bin\\apigen generate inc\\ --destination docs\\php",
-    "jsdocs": "rimraf docs/js && node_modules\\.bin\\jsdoc public\\src -c build/jsdoc.json",
-    "apidocs": "rimraf docs/api && node_modules\\.bin\\apidoc -i inc -o docs/api",
-    "hookdocs": "rimraf docs/hooks && node_modules\\.bin\\jsdoc inc -c build/hookdoc.json",
+    "jsdocs": "rimraf docs/js && jsdoc public\\src -c build/jsdoc.json",
+    "apidocs": "rimraf docs/api && apidoc -i inc -o docs/api",
+    "hookdocs": "rimraf docs/hooks && jsdoc inc -c build/hookdoc.json",
     "docs": "npm run phpdocs && npm run jsdocs && npm run apidocs && npm run hookdocs"
   },
   "dependencies": {
